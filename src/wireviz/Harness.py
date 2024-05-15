@@ -613,6 +613,7 @@ class Harness:
                 raise Exception(f"{mate} is an unknown mate")
 
             from_connector = self.connectors[mate.from_name]
+            to_connector = self.connectors[mate.to_name]
             if (
                 isinstance(mate, MatePin)
                 and self.connectors[mate.from_name].style != "simple"
@@ -635,7 +636,6 @@ class Harness:
             else:  # MateComponent or style == 'simple'
                 to_port_str = ""
             code_from = f"{mate.from_name}{from_port_str}:e"
-            to_connector = self.connectors[mate.to_name]
             code_to = f"{mate.to_name}{to_port_str}:w"
 
             dot.attr("edge", color=color, style="dashed", dir=dir)
